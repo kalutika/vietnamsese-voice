@@ -1,0 +1,47 @@
+{
+    "yen_nhi": {
+        "name": "Yến Nhi",
+        "audio_path": "data/infer-audio/yen_nhi.wav",
+        "text": "Dạ chào anh, em gọi trực tiếp từ bộ phận phê duyệt hồ sơ thẻ tín dụng. Hiện tại hồ sơ của mình đang nằm trong danh sách ưu tiên nhận hạn mức lên đến hai trăm triệu đồng, kèm ưu đãi miễn phí thường niên trọn đời. Không biết mình có tiện trao đổi hai phút để em hướng dẫn nhận thẻ ngay không ạ?"
+    },
+    "my_van": {
+        "name": "Mỹ Vân",
+        "audio_path": "data/infer-audio/my_van.wav",
+        "text": "Dạ chào anh, em gọi trực tiếp từ bộ phận phê duyệt hồ sơ thẻ tín dụng. Hiện tại hồ sơ của mình đang nằm trong danh sách ưu tiên nhận hạn mức lên đến hai trăm triệu đồng, kèm ưu đãi miễn phí thường niên trọn đời. Không biết mình có tiện trao đổi hai phút để em hướng dẫn nhận thẻ ngay không ạ?"
+    },
+    "ai_vy": {
+        "name": "Ái Vy",
+        "audio_path": "data/infer-audio/ai_vy.wav",
+        "text": "Dạ chào anh, em gọi trực tiếp từ bộ phận phê duyệt hồ sơ thẻ tín dụng. Hiện tại hồ sơ của mình đang nằm trong danh sách ưu tiên nhận hạn mức lên đến hai trăm triệu đồng, kèm ưu đãi miễn phí thường niên trọn đời. Không biết mình có tiện trao đổi hai phút để em hướng dẫn nhận thẻ ngay không ạ?"
+    },
+    "an_nhi": {
+        "name": "An Nhi",
+        "audio_path": "data/infer-audio/an_nhi.wav",
+        "text": "Thưa quý vị, sáng nay tại TP.HCM, Diễn đàn Kinh tế số đã chính thức khai mạc. Phát biểu tại hội nghị, các chuyên gia nhấn mạnh việc ứng dụng Trí tuệ nhân tạo sẽ là đòn bẩy chiến lược giúp doanh nghiệp tối ưu hóa quy trình sản xuất và nâng cao năng lực cạnh tranh trong kỷ nguyên công nghệ bốn chấm không."
+    },
+    "dieu_linh": {
+        "name": "Diệu Linh",
+        "audio_path": "data/infer-audio/dieu_linh.wav",
+        "text": "Thưa quý vị, sáng nay tại TP.HCM, Diễn đàn Kinh tế số đã chính thức khai mạc. Phát biểu tại hội nghị, các chuyên gia nhấn mạnh việc ứng dụng Trí tuệ nhân tạo sẽ là đòn bẩy chiến lược giúp doanh nghiệp tối ưu hóa quy trình sản xuất và nâng cao năng lực cạnh tranh trong kỷ nguyên công nghệ bốn chấm không."
+    },
+    "khanh_toan": {
+        "name": "Khánh Toàn",
+        "audio_path": "data/infer-audio/khanh_toan.wav",
+        "text": "Thưa quý vị, sáng nay tại TP.HCM, Diễn đàn Kinh tế số đã chính thức khai mạc. Phát biểu tại hội nghị, các chuyên gia nhấn mạnh việc ứng dụng Trí tuệ nhân tạo sẽ là đòn bẩy chiến lược giúp doanh nghiệp tối ưu hóa quy trình sản xuất và nâng cao năng lực cạnh tranh trong kỷ nguyên công nghệ bốn chấm không."
+    },
+    "tran_lam": {
+        "name": "Trần Lâm",
+        "audio_path": "data/infer-audio/tran_lam.wav",
+        "text": "Trên tay mình lúc này là siêu phẩm mới nhất trong năm nay. Cảm giác cầm nắm cực kỳ đầm tay với khung viền titan sang trọng. Điểm ăn tiền nhất chính là cụm camera được nâng cấp mạnh mẽ, cho khả năng quay phim chuẩn điện ảnh ngay cả trong điều kiện thiếu sáng. Một thiết bị thực sự đáng đồng tiền bát gạo!"
+    },
+    "nsnd_ha_phuong": {
+        "name": "NSND Hà Phương",
+        "audio_path": "data/infer-audio/nsnd_ha_phuong.wav",
+        "text": "Khi thành phố đã chìm sâu vào giấc ngủ, chỉ còn tiếng gió khẽ lay những tán lá bên cửa sổ. Hãy gạt bỏ mọi lo âu của ngày dài, thả mình vào sự tĩnh lặng tuyệt đối. Trong giấc mơ đêm nay, bạn sẽ thấy mình đi lạc vào một cánh rừng nguyên sơ, nơi chỉ có tiếng suối róc rách và hương hoa cỏ dịu nhẹ..."
+    },
+    "nsnd_kim_cuc": {
+        "name": "NSND Kim Cúc",
+        "audio_path": "data/infer-audio/nsnd_kim_cuc.wav",
+        "text": "Khi thành phố đã chìm sâu vào giấc ngủ, chỉ còn tiếng gió khẽ lay những tán lá bên cửa sổ. Hãy gạt bỏ mọi lo âu của ngày dài, thả mình vào sự tĩnh lặng tuyệt đối. Trong giấc mơ đêm nay, bạn sẽ thấy mình đi lạc vào một cánh rừng nguyên sơ, nơi chỉ có tiếng suối róc rách và hương hoa cỏ dịu nhẹ..."
+    }
+}
