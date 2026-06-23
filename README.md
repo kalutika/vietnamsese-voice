@@ -90,6 +90,9 @@ sf.write("output.wav", wavs[0], sr)
 # Using a built-in reference speaker
 python inference.py --text "Your text here" --speaker yen_nhi
 
+# Reading text from file
+python inference.py --text_file content.txt --speaker yen_nhi
+
 # Using a custom reference audio
 python inference.py \
     --text "Your text here" \
