@@ -21,6 +21,10 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Optional
+from datetime import datetime
+import glob
+import numpy as np
 
 import torch
 import soundfile as sf
@@ -83,7 +87,7 @@ def load_speaker_info(ref_info_path):
         return json.load(f)
 
 
-def load_text_input(text: str | None, text_file: str | None) -> str:
+def load_text_input(text: Optional[str], text_file: Optional[str]) -> str:
     """Resolve synthesis text from --text or --text_file."""
     if text and text_file:
         raise ValueError("Use either --text or --text_file, not both")
@@ -185,35 +189,83 @@ def main():
             print("ref_info.json not found.")
         sys.exit(0)
 
-    try:
-        text_input = load_text_input(args.text, args.text_file)
-    except (ValueError, FileNotFoundError) as exc:
-        parser.error(str(exc))
+    # try:
+    #     text_input = load_text_input(args.text, args.text_file)
+    # except (ValueError, FileNotFoundError) as exc:
+    #     parser.error(str(exc))
 
-    if args.speaker is None and args.ref_audio is None:
-        parser.error("Either --speaker or --ref_audio must be provided")
-    if args.ref_audio and not args.ref_text:
-        parser.error("--ref_text is required when using --ref_audio")
+    # if args.speaker is None and args.ref_audio is None:
+    #     parser.error("Either --speaker or --ref_audio must be provided")
+    # if args.ref_audio and not args.ref_text:
+    #     parser.error("--ref_text is required when using --ref_audio")
 
-    runtime_device, runtime_dtype = resolve_runtime(args.device)
-    print(f"Loading model from {args.model_path} on {runtime_device}...")
-    model = load_model(args.model_path, device=runtime_device, dtype=runtime_dtype)
-    print("Model loaded successfully.")
+    # runtime_device, runtime_dtype = resolve_runtime(args.device)
+    # print(f"Loading model from {args.model_path} on {runtime_device}...")
+    # model = load_model(args.model_path, device=runtime_device, dtype=runtime_dtype)
+    # print("Model loaded successfully.")
 
-    if args.speaker:
-        ref_info = load_speaker_info(ref_info_path)
-        print(f"Generating with speaker: {ref_info[args.speaker]['name']}...")
-        wav, sr = generate_with_speaker(
-            model, text_input, args.language, args.speaker, ref_info, base_dir,
-        )
+    output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
+
+    # if args.speaker:
+    #     ref_info = load_speaker_info(ref_info_path)
+    #     print(f"Generating with speaker: {ref_info[args.speaker]['name']}...")
+    #     # wav, sr = generate_with_speaker(
+    #     #     model, text_input, args.language, args.speaker, ref_info, base_dir,
+    #     # )
+    #     # sf.write(args.output, wav, sr)
+    #     # print(f"Saved to {args.output} (sample rate: {sr}Hz)")
+    #     texts = [line.strip() for line in text_input.splitlines() if line.strip()]
+    #     for index, text in enumerate(texts, start=1):
+    #         print(f"Generating audio for text {index}/{len(texts)}: {text}")
+    #         wav, sr = generate_with_speaker(model, text, args.language, args.speaker, ref_info, base_dir)
+    #         filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{index}.wav"
+    #         full_path = os.path.join(output_dir, filename)
+    #         sf.write(full_path, wav, sr)
+    #         print(f"Saved to {full_path} (sample rate: {sr}Hz)")
+       
+    # else:
+    #     print(f"Generating with custom reference audio: {args.ref_audio}...")
+    #     texts = [line.strip() for line in text_input.splitlines() if line.strip()]
+    #     for index, text in enumerate(texts, start=1):
+    #         print(f"Generating audio for text {index}/{len(texts)}: {text}")
+    #         wav, sr = generate_voice_clone(model, text, args.language, args.ref_audio, args.ref_text)
+    #         # put file to output folder
+    #         filename = f"output_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{index}.wav"
+    #         full_path = os.path.join(output_dir, filename)
+    #         sf.write(full_path, wav, sr)
+    #         print(f"Saved to {full_path} (sample rate: {sr}Hz)")
+
+    # Merging all generated .wav files into a single file
+    print("Merging all generated .wav files into a single file...")    
+    # 1. Lấy tất cả các file .wav trong thư mục và sắp xếp theo thứ tự tên (tăng dần theo index)
+    wav_files = sorted(glob.glob(os.path.join(output_dir, "*.wav")))
+
+    if not wav_files:
+        print("Không tìm thấy file .wav nào trong thư mục output!")
     else:
-        print(f"Generating with custom reference audio: {args.ref_audio}...")
-        wav, sr = generate_voice_clone(
-            model, text_input, args.language, args.ref_audio, args.ref_text,
-        )
+        all_data = []
+        sample_rate = None
 
-    sf.write(args.output, wav, sr)
-    print(f"Saved to {args.output} (sample rate: {sr}Hz)")
+        # 2. Đọc từng file và đưa dữ liệu vào mảng
+        for file_path in wav_files:
+            # Bỏ qua chính file tổng nếu bạn vô tình chạy lại lệnh này
+            if "final_merged_output" in file_path:
+                continue
+                
+            data, sr = sf.read(file_path)
+            sample_rate = sr  # Lấy tần số lấy mẫu (thường là giống nhau giữa các file)
+            all_data.append(data)
+
+        # 3. Nối tất cả mảng dữ liệu âm thanh lại với nhau
+        merged_data = np.concatenate(all_data, axis=0)
+
+        # 4. Ghi file tổng ra thư mục output
+        final_filename = os.path.join(output_dir, "final_merged_output.wav")
+        sf.write(final_filename, merged_data, sample_rate)
+        
+        print(f"Đã nối thành công {len(all_data)} file thành: {final_filename}")
+
 
 
 if __name__ == "__main__":

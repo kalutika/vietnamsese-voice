@@ -21,6 +21,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Optional
 
 import torch
 import soundfile as sf
@@ -83,7 +84,7 @@ def load_speaker_info(ref_info_path):
         return json.load(f)
 
 
-def load_text_input(text: str | None, text_file: str | None) -> str:
+def load_text_input(text: Optional[str], text_file: Optional[str]) -> str:
     """Resolve synthesis text from --text or --text_file."""
     if text and text_file:
         raise ValueError("Use either --text or --text_file, not both")

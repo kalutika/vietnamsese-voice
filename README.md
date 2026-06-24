@@ -1,3 +1,5 @@
+python inference.py --text_file ket_qua_tom_tat.txt --speaker dieu_linh
+
 # Gwen-TTS: Natural Vietnamese Voice Cloning
 
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-Model-yellow)](https://huggingface.co/g-group-ai-lab/gwen-tts-0.6B)
